@@ -2,6 +2,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth";
 import prisma from "@repo/db/client";
+import { AnyARecord } from "dns";
 
 export async function p2pTransfer(to: string, amount: number) {
     const session = await getServerSession(authOptions);
@@ -22,10 +23,10 @@ export async function p2pTransfer(to: string, amount: number) {
             message: "User not found"
         }
     }
-    await prisma.$transaction(async (tx) => {
-        await tx.$queryRaw`SELECT * FROM "Balance" WHERE "userId" = ${Number(from)} FOR UPDATE`;
+    await prisma.$transaction(async (tx:any) => {
+           await tx.$queryRaw`SELECT * FROM "Balance" WHERE "userId" = ${Number(from)} FOR UPDATE`;
 
-        const fromBalance = await tx.balance.findUnique({
+          const fromBalance = await tx.balance.findUnique({
             where: { userId: Number(from) },
           });
           if (!fromBalance || fromBalance.amount < amount) {
@@ -50,5 +51,6 @@ export async function p2pTransfer(to: string, amount: number) {
                 timestamp: new Date()
             }
           })
+          // locking
     });
 }
