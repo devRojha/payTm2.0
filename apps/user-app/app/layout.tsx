@@ -18,15 +18,14 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <head>
-        {/* Add any head elements here */}
-      </head>
-      <body className={inter.className}>
-        <Providers>
-          <AppbarClient />
-          {children}
-        </Providers>
-      </body>
+      <Providers>
+        <body className={inter.className}>
+          <div className="min-w-screen min-h-screen bg-[#ebe6e6]">
+            <AppbarClient />
+            {children}
+          </div>
+        </body>
+      </Providers>
     </html>
   );
 }

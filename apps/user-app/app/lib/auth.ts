@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 export const authOptions = {
     providers: [
       CredentialsProvider({
-          name: 'Phone Number',
+          name: 'Credentials',
           credentials: {
             phone: { label: "Phone number", type: "text", placeholder: "1231231231", required: true },
             password: { label: "Password", type: "password", required: true }
@@ -39,7 +39,7 @@ export const authOptions = {
                         password: hashedPassword
                     }
                 });
-                // asking for OTP
+            
                 return {
                     id: user.id.toString(),
                     name: user.name,
@@ -55,7 +55,7 @@ export const authOptions = {
     ],
     secret: process.env.JWT_SECRET || "secret",
     callbacks: {
-        // TODO: can u fix any
+        // TODO: can u fix the type here? Using any is bad
         async session({ token, session }: any) {
             session.user.id = token.sub
 

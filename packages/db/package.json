@@ -2,8 +2,7 @@
     "name": "@repo/db",
     "version": "0.0.0",
     "dependencies": {
-        "@prisma/client": "^5.11.0",
-        "recoil": "^0.7.7"
+        "@prisma/client": "^5.11.0"
     },
     "devDependencies": {
         "prisma": "5.11.0"

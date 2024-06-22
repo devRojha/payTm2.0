@@ -1,8 +1,6 @@
 
-
-
 export default function() {
     return <div>
-        Transaction Page
+        Transactions
     </div>
 }

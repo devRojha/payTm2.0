@@ -1,8 +1,6 @@
 
-
-
 export default function() {
     return <div>
-        DashBoard Page
+        Dashboard
     </div>
 }
